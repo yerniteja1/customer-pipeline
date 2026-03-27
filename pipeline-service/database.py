@@ -4,12 +4,11 @@ from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
 # ── read connection string from environment ──
 DATABASE_URL = os.environ.get(
-    "DATABASE_URL",
-    "postgresql://postgres:password@localhost:5432/customer_db"
+    "DATABASE_URL"
 )
 
 # ── engine — one per process ──
-engine = create_engine(DATABASE_URL)
+engine = create_engine(DATABASE_URL, connect_args={"sslmode": "require"})
 
 # ── session factory ──
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
