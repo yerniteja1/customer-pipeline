@@ -8,7 +8,10 @@ DATABASE_URL = os.environ.get(
 )
 
 # ── engine — one per process ──
-engine = create_engine(DATABASE_URL, connect_args={"sslmode": "require"})
+engine = create_engine(
+    DATABASE_URL,
+    connect_args={"sslmode": "require"}
+)
 
 # ── session factory ──
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
